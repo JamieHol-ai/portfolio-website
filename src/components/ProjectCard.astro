@@ -4,20 +4,40 @@ export interface Props {
   description: string;
   image: string;
   url: string;
+  software: string[];
 }
 
-const { title, description, image, url } = Astro.props;
+const { title, description, image, url, software } = Astro.props;
 ---
 
-<div class="project-card bg-white p-6 rounded-lg shadow-md">
-  <img src={image} alt={title} class="w-full h-48 object-cover rounded-lg mb-4" />
-  <h3 class="text-2xl font-bold mb-2">{title}</h3>
-  <p class="text-gray-400 mb-4">{description}</p>
-  <a href={url} class="text-blue-500 hover:underline">View Project</a>
+<div class="project-card border border-white rounded-lg overflow-hidden">
+  <div class="relative">
+    <img src={image} alt={title} class="w-full h-48 object-cover" />
+    <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-2">
+      <h3 class="text-xl font-bold text-white">{title}</h3>
+    </div>
+  </div>
+  <div class="border-t border-white">
+    <div class="p-1">
+      {software.length > 0 ? (
+        <div class="flex flex-wrap gap-2 text-secondary-text">
+          {software.map((item) => (
+            <span>{item}</span>
+          ))}
+        </div>
+      ) : (
+        <p class="text-secondary-text">No software specified.</p>
+      )}
+    </div>
+  </div>
+  <div class="border-t border-white p-1">
+    <div class="mb-4">
+      <p class="text-secondary-text">{description}</p>
+    </div>
+    <div class="text-right">
+      <a href={url} class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        View Project
+      </a>
+    </div>
+  </div>
 </div>
-
-<style>
-  .project-card {
-    /* Add your card styling here */
-  }
-</style>

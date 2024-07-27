@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import { Astro } from 'astro';
+import SmallProjectCard from '../components/SmallProjectCard.astro';
 
 // Fetch main projects
 const mainProjects = await Astro.glob('../content/projects/main/*.mdx');
@@ -11,10 +11,20 @@ const smallProjects = await Astro.glob('../content/projects/small/*.mdx');
 ---
 
 <BaseLayout title="Portfolio">
-  <h1 class="text-5xl font-bold text-primary-text mb-8 text-center">My Portfolio</h1>
+  <h2 class="text-title font-bold mb-8">
+    <span class="text-navigation">/</span><span class="text-white">projects</span>
+  </h2>
+  <p class="text-normal text-secondary-text mb-8">
+    List of my projects
+  </p>
 
   <section class="mb-12">
-    <h2 class="text-3xl font-semibold text-primary-text mb-4 text-center">Main Projects</h2>
+    <div class="flex items-center mb-8">
+      <h2 class="text-title font-bold mr-4">
+        <span class="text-navigation">#</span><span class="text-white">main projects</span>
+      </h2>
+      <div class="flex-grow border-t border-navigation"></div>
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {mainProjects.map((project) => (
         <ProjectCard
@@ -22,20 +32,26 @@ const smallProjects = await Astro.glob('../content/projects/small/*.mdx');
           description={project.frontmatter.description}
           image={project.frontmatter.image}
           url={project.frontmatter.url}
+          software={Array.isArray(project.frontmatter.software) ? project.frontmatter.software : []}
         />
       ))}
     </div>
   </section>
 
   <section>
-    <h2 class="text-3xl font-semibold text-primary-text mb-4 text-center">Small Projects</h2>
+    <div class="flex items-center mb-8">
+      <h2 class="text-title font-bold mr-4">
+        <span class="text-navigation">#</span><span class="text-white">small projects</span>
+      </h2>
+      <div class="flex-grow border-t border-navigation"></div>
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {smallProjects.map((project) => (
-        <ProjectCard
+        <SmallProjectCard
           title={project.frontmatter.title}
           description={project.frontmatter.description}
-          image={project.frontmatter.image}
           url={project.frontmatter.url}
+          software={Array.isArray(project.frontmatter.software) ? project.frontmatter.software : []}
         />
       ))}
     </div>

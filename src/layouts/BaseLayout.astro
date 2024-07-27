@@ -1,8 +1,6 @@
 ---
+import Navbar from '../components/Navbar.astro';
 import '../styles/global.css';
-export const props = {
-  contentClass: String
-};
 ---
 
 <html lang="en">
@@ -12,9 +10,12 @@ export const props = {
     <title>{Astro.props.title || 'My Website'}</title>
   </head>
   <body class="bg-main-bg min-h-screen flex flex-col items-center justify-center">
-    <main class="container mx-auto px-4 py-8">
-      <div class={`bg-column-bg p-8 rounded-lg shadow-lg w-full ${Astro.props.contentClass}`}>
-        <slot />
+    <main class="container mx-auto px-4 py-8 w-4/5">
+      <div class="bg-column-bg p-8 rounded-lg shadow-lg w-full">
+        <Navbar />
+        <div class="mt-8"> <!-- Add margin to create space between navbar and content -->
+          <slot />
+        </div>
       </div>
     </main>
   </body>

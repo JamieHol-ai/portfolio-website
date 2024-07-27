@@ -1,0 +1,29 @@
+---
+const navItems = [
+  { href: '/portfolio-website', text: 'home' },
+  { href: '/portfolio-website/portfolio', text: 'projects' },
+  { href: '/portfolio-website/experience', text: 'experience' },
+  { href: '/portfolio-website/about', text: 'about me' },
+  { href: '/portfolio-website/contact', text: 'contact' },
+];
+---
+
+<nav class="sticky top-0 z-10 bg-column-bg p-4 -mx-8 -mt-8">
+  <div class="flex justify-between items-center">
+    <div class="text-primary-text text-2xl">Jamie Holroyde</div>
+    <ul class="flex space-x-4">
+      {navItems.map((item, index) => (
+        <li>
+          <a
+            href={item.href}
+            class={`text-xl transition-colors duration-200 ${
+              index === 0 ? 'text-primary-text' : 'text-secondary-text hover:text-primary-text'
+            }`}
+          >
+            {<span class="text-navigation">/</span>}{item.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
