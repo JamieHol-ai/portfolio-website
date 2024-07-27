@@ -1,21 +1,18 @@
 ---
+import BaseLayout from '../layouts/Layout.astro';
 import '../styles/global.css'; // Ensure you have global styles imported if needed
 ---
 
-<main class="bg-main-bg min-h-screen flex flex-col items-center justify-center">
-  <div class="bg-column-bg p-8 rounded-lg shadow-lg max-w-2xl w-full text-center">
-    <h1 class="text-4xl font-bold text-white mb-4">Your Name</h1>
-    
-    <div class="mb-6">
-      <img 
-        src="/path/to/your-image.jpg" 
-        alt="Your Name" 
-        class="w-48 h-48 rounded-full mx-auto object-cover"
-      />
-    </div>
-    
-    <p class="text-xl text-gray-300 mb-8">
-      Your brief one-sentence description goes here.
+<BaseLayout title="Home">
+  <img 
+    src="/portfolio-website/introduction-pic.svg" 
+    alt="Jamie Holroyde" 
+    class="w-48 h-48 rounded-full object-cover mr-6"
+  />
+  <div class="flex flex-col">
+    <h1 class="text-4xl font-bold text-primary-text mb-2">Jamie Holroyde</h1>
+    <p class="text-xl text-secondary-text">
+      Informatics Student @ The University of Edinburgh
     </p>
   </div>
-</main>
+</BaseLayout>

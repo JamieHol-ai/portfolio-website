@@ -1,5 +1,4 @@
 ---
-// src/layouts/Layout.astro
 import '../styles/global.css';
 ---
 
@@ -7,13 +6,11 @@ import '../styles/global.css';
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>{Astro.props.title || 'My Website'}</title>
   </head>
-  <body class="bg-main-bg text-white">
-    <div class="container mx-auto p-4">
-      <main class="bg-column-bg p-8 rounded-lg shadow-lg">
-        <slot />
-      </main>
+  <body class="bg-main-bg min-h-screen flex flex-col items-center justify-center">
+    <div class="bg-column-bg p-8 rounded-lg shadow-lg w-4/5 flex items-center">
+      <slot />
     </div>
   </body>
 </html>
