@@ -1,5 +1,8 @@
 ---
 import '../styles/global.css';
+export const props = {
+  contentClass: String
+};
 ---
 
 <html lang="en">
@@ -9,8 +12,10 @@ import '../styles/global.css';
     <title>{Astro.props.title || 'My Website'}</title>
   </head>
   <body class="bg-main-bg min-h-screen flex flex-col items-center justify-center">
-    <div class="bg-column-bg p-8 rounded-lg shadow-lg w-4/5 flex items-center">
-      <slot />
-    </div>
+    <main class="container mx-auto px-4 py-8">
+      <div class={`bg-column-bg p-8 rounded-lg shadow-lg w-full ${Astro.props.contentClass}`}>
+        <slot />
+      </div>
+    </main>
   </body>
 </html>

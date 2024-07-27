@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { Astro } from 'astro';
+
+// Fetch main projects
+const mainProjects = await Astro.glob('../content/projects/main/*.mdx');
+
+// Fetch small projects
+const smallProjects = await Astro.glob('../content/projects/small/*.mdx');
+---
+
+<BaseLayout title="Portfolio">
+  <h1 class="text-5xl font-bold text-primary-text mb-8 text-center">My Portfolio</h1>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold text-primary-text mb-4 text-center">Main Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {mainProjects.map((project) => (
+        <ProjectCard
+          title={project.frontmatter.title}
+          description={project.frontmatter.description}
+          image={project.frontmatter.image}
+          url={project.frontmatter.url}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-3xl font-semibold text-primary-text mb-4 text-center">Small Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {smallProjects.map((project) => (
+        <ProjectCard
+          title={project.frontmatter.title}
+          description={project.frontmatter.description}
+          image={project.frontmatter.image}
+          url={project.frontmatter.url}
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>
