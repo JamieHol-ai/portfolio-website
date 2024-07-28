@@ -10,13 +10,13 @@ const navItems = [
 
 <nav class="sticky top-0 z-10 bg-column-bg p-4 -mx-8 -mt-8">
   <div class="flex justify-between items-center">
-    <div class="text-primary-text text-2xl">Jamie Holroyde</div>
+    <div class="text-primary-text text-m">Jamie Holroyde</div>
     <ul class="flex space-x-4">
       {navItems.map((item, index) => (
         <li>
           <a
             href={item.href}
-            class={`text-xl transition-colors duration-200 ${
+            class={`text-m transition-colors duration-200 ${
               index === 0 ? 'text-primary-text' : 'text-secondary-text hover:text-primary-text'
             }`}
           >
