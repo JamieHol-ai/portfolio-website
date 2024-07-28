@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import Skills from '../components/Skills.astro';
+import { skillCategories } from '../content/skillCategories';
 
 // Fetch all main projects
 const mainProjects = await Astro.glob('../content/projects/main/*.mdx');
@@ -11,20 +13,21 @@ const recentMainProjects = mainProjects.sort((a, b) => new Date(b.frontmatter.da
 
 <BaseLayout title="Home">
   <section class="mt-36">
-  <div class="flex items-center">
-    <img 
-      src="/portfolio-website/introduction-pic.svg" 
-      alt="Jamie Holroyde" 
-      class="w-48 h-48 rounded-full object-cover mr-6"
-    />
-    <div class="flex flex-col">
-      <h1 class="text-4xl font-bold text-primary-text mb-2">Jamie Holroyde</h1>
-      <p class="text-xl text-secondary-text">
-        Informatics Student @ The University of Edinburgh
-      </p>
+    <div class="flex items-center">
+      <img 
+        src="/portfolio-website/introduction-pic.svg" 
+        alt="Jamie Holroyde" 
+        class="w-48 h-48 rounded-full object-cover mr-6"
+      />
+      <div class="flex flex-col">
+        <h1 class="text-4xl font-bold text-primary-text mb-2">Jamie Holroyde</h1>
+        <p class="text-xl text-secondary-text">
+          Informatics Student @ The University of Edinburgh
+        </p>
+      </div>
     </div>
-  </div>
-  </section>  
+  </section>
+
   <!-- Recent Projects Section -->
   <section class="mt-36">
     <div class="flex items-center mb-8">
@@ -47,7 +50,33 @@ const recentMainProjects = mainProjects.sort((a, b) => new Date(b.frontmatter.da
         />
       ))}
     </div>
-    <div class="mt-6 text-right">
+  </section>
+
+  <!-- Skills Section -->
+  <section class="mt-36">
+    <div class="flex items-center mb-8">
+      <h2 class="text-title font-bold mr-4">
+        <span class="text-navigation">#</span><span class="text-white">skills</span>
+      </h2>
+      <div class="flex-grow border-t border-navigation"></div>
+    </div>
+    <Skills categories={skillCategories} />
+  </section>
+  <!-- About Me Section -->
+  <section class="mt-36">
+    <div class="flex items-center mb-8">
+      <h2 class="text-title font-bold mr-4">
+        <span class="text-navigation">#</span><span class="text-white">about me</span>
+      </h2>
+      <div class="flex-grow border-t border-navigation"></div>
+    </div>
+    <p class="text-normal text-secondary-text mb-4">
+      Hi, I'm Jamie! I'm an Informatics student at Edinburgh University, currently in my second year. My journey in the world of computing has been driven by a passion for technology and a desire to solve complex problems through innovative solutions.
+    </p>
+    <div class="text-right">
+      <a href="/portfolio-website/about" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        Read More
+      </a>
     </div>
   </section>
 </BaseLayout>
