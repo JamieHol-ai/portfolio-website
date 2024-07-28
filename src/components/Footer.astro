@@ -1,14 +1,10 @@
 ---
 import ContactIcons from "./ContactIcons.astro"
-import { contactInfo } from '../content/contactInfo';
-
-const { name } = contactInfo;
 ---
-<footer class="bg-column-bg text-primary-text py-4 mt-auto border-t border-white">
+
+<footer class="bg-column-bg  py-4 mt-auto border-t border-white">
   <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center">
-    <div class="text-sm mb-4 sm:mb-0 hidden sm:block">
-      {name}
-    </div>
+    <a href="https://github.com/JamieHol-ai/portfolio-website" class="text-secondary-text hover:text-primary-text">View source code</a>
     <ContactIcons />
   </div>
 </footer>
