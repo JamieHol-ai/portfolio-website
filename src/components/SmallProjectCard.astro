@@ -18,14 +18,12 @@ const buttonType = url && url.includes('github.com') ? 'github' : 'live';
 <div class="small-project-card border border-white rounded-lg overflow-hidden">
   <div class="p-1">
     <h3 class="text-xl font-bold text-white mb-2">{title}</h3>
-    {software.length > 0 ? (
+    {software.length > 0 && (
       <div class="flex flex-wrap gap-2 text-secondary-text">
         {software.map((item) => (
           <span>{item}</span>
         ))}
       </div>
-    ) : (
-      <p class="text-secondary-text">No software specified.</p>
     )}
   </div>
   <div class="border-t border-white p-2">

@@ -4,16 +4,16 @@ export const skillCategories = [
       skills: ['Python', 'JavaScript', 'Java', 'C++'],
     },
     {
-      title: 'Tools',
-      skills: ['Git', 'VS Code', 'Figma'],
+      title: 'Web Development',
+      skills: ['HTML', 'CSS', 'Node.js', 'Astro', 'Tailwind'],
     },
     {
-      title: 'Frameworks',
-      skills: ['Node.js', 'Astro', 'Tailwind'],
+      title: 'Software Development Tools',
+      skills: ['Git', 'VS Code'],
     },
     {
-      title: 'Other',
-      skills: ['HTML', 'CSS'],
+      title: 'Specialized Technologies',
+      skills: ['Unreal Engine 4', 'Robot Operating System (ROS)', 'SLAM (Simultaneous Localization and Mapping)'],
     },
   ];
   

@@ -22,19 +22,17 @@ const buttonType = url && url.includes('github.com') ? 'github' : 'live';
       <h3 class="text-xl font-bold text-white">{title}</h3>
     </div>
   </div>
-  <div class="border-t border-white">
-    <div class="p-1">
-      {software.length > 0 ? (
+  {software.length > 0 && (
+    <div class="border-t border-white">
+      <div class="p-1">
         <div class="flex flex-wrap gap-2 text-secondary-text">
           {software.map((item) => (
             <span>{item}</span>
           ))}
         </div>
-      ) : (
-        <p class="text-secondary-text">No software specified.</p>
-      )}
+      </div>
     </div>
-  </div>
+  )}
   <div class="border-t border-white p-2">
     <div class="mb-4">
       <p class="text-secondary-text">{description}</p>
