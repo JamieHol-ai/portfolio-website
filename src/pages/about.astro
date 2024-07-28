@@ -1,31 +1,42 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Skills from '../components/Skills.astro';
-import { skillCategories } from '../content/skillCategories.ts';
+import { skillCategories } from '../content/skillCategories';
 import '../styles/global.css';
 ---
 
 <BaseLayout title="About Me">
   <section class="mb-12">
-    <div class="flex items-center mb-8">
-      <h2 class="text-title font-bold mr-4">
-        <span class="text-navigation">/</span><span class="text-white">about me</span>
-      </h2>
+    <div class="flex items-start mb-8">
+      <div class="flex-grow">
+        <h2 class="text-title font-bold mr-4">
+          <span class="text-navigation">/</span><span class="text-white">about me</span>
+        </h2>
+      <div class="mt-4">
+        <p class="text-normal text-secondary-text mb-4">
+          Hi, I'm Jamie!
+        </p>
+        <p class="text-normal text-secondary-text mb-4">
+          I'm an Informatics student at Edinburgh University, currently in my second year. My journey in the world of computing has been driven by a passion for technology and a desire to solve complex problems through innovative solutions. In my free time, I love to explore new programming languages and tools, and I am always eager to learn and grow in my field.
+        </p>
+        </div> 
+        </div>
+        <div class="flex-shrink-0 ml-6">
+        <img 
+          src="/portfolio-website/introduction-pic.svg" 
+          alt="Jamie Holroyde" 
+          class="w-48 h-48 rounded-full object-cover"
+        />
     </div>
-    <p class="text-normal text-secondary-text mb-4">
-        Hi, I’m Jamie!
-    </p>
-    <p class="text-normal text-secondary-text">
-        I’m an Informatics student at Edinburgh University, currently in my second year. My journey in the world of computing has been driven by a passion for technology and a desire to solve complex problems through innovative solutions. In my free time, I love to explore new programming languages and tools, and I am always eager to learn and grow in my field.
-    </p>
+    </div>
   </section>
   <section>
     <div class="flex items-center mb-8">
-        <h2 class="text-title font-bold mr-4">
-          <span class="text-navigation">#</span><span class="text-white">skills</span>
-        </h2>
-        <div class="flex-grow border-t border-navigation"></div>
-      </div>
+      <h2 class="text-title font-bold mr-4">
+        <span class="text-navigation">#</span><span class="text-white">skills</span>
+      </h2>
+      <div class="flex-grow border-t border-navigation"></div>
+    </div>
     <Skills categories={skillCategories} />
   </section>
 </BaseLayout>

@@ -1,0 +1,44 @@
+---
+export interface Props {
+  email: string;
+  discord: string;
+  linkedin: string;
+  github: string;
+}
+
+const { email, discord, linkedin, github} = Astro.props;
+---
+
+<div class="bg-column-bg p-4 rounded-lg shadow-md border border-white flex flex-col items-center">
+  <h3 class="text-lg font-semibold text-primary-text mb-4">Message Me</h3>
+  <div class="flex items-center space-x-4">
+    <a href={`mailto:${email}`} class="text-white hover:text-blue-500">
+        <img 
+        src="/portfolio-website/icons/email.svg" 
+        alt="Discord" 
+        class="w-6 h-6"
+      />
+    </a>
+    <a href={discord} class="text-white hover:text-blue-500">
+    <img 
+      src="/portfolio-website/icons/discord.svg" 
+      alt="Discord" 
+      class="w-6 h-6"
+    />
+    </a>
+    <a href={linkedin} class="text-white hover:text-blue-500">
+        <img 
+        src="/portfolio-website/icons/linkedin.svg" 
+        alt="Discord" 
+        class="w-6 h-6"
+      />
+    </a>
+    <a href={github} class="text-white hover:text-blue-500">
+    <img 
+      src="/portfolio-website/icons/github.svg" 
+      alt="Discord" 
+      class="w-6 h-6"
+    />
+    </a>
+  </div>
+</div>
