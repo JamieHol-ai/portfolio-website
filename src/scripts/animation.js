@@ -5,15 +5,28 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   
-    let dots = [];
+    // List of hex color values
+    const colors = ['#3A3F47', '#FFFFFF', '#ABB2BF', '#729CEE'];
   
-    class Dot {
+    let particles = [];
+    const particleCount = 250;
+    const connectionDistance = 100;
+    const baseSpeed = 0.8; // Base speed for particles
+  
+    class Particle {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = 2;
-        this.speedX = Math.random() * 3 - 1.5;
-        this.speedY = Math.random() * 3 - 1.5;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = (Math.random() * 2 - 1) * baseSpeed;
+        this.speedY = (Math.random() * 2 - 1) * baseSpeed;
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+        this.shape = Math.random() < 0.33 ? 'circle' : Math.random() < 0.66 ? 'triangle' : 'square';
+        this.z = Math.random() * 3; // For depth illusion
+        this.isIcon = Math.random() < 0.1; // 10% chance to be an icon
+        if (this.isIcon) {
+          this.icon = ['</', '{}', '[]', '()'][Math.floor(Math.random() * 4)];
+        }
       }
   
       update() {
@@ -22,41 +35,65 @@ document.addEventListener('DOMContentLoaded', () => {
   
         if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
         if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+  
+        // Update z for depth illusion
+        this.z += 0.01;
+        if (this.z > 3) this.z = 0;
       }
   
       draw() {
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
+        const scale = (this.z + 1) / 4; // 0.25 to 1
+        ctx.globalAlpha = scale;
+        ctx.fillStyle = this.color;
+  
+        if (this.isIcon) {
+          ctx.font = `${this.size * 2 * scale}px Arial`;
+          ctx.fillText(this.icon, this.x, this.y);
+        } else {
+          if (this.shape === 'circle') {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size * scale, 0, Math.PI * 2);
+            ctx.fill();
+          } else if (this.shape === 'triangle') {
+            ctx.beginPath();
+            ctx.moveTo(this.x, this.y - this.size * scale);
+            ctx.lineTo(this.x - this.size * scale, this.y + this.size * scale);
+            ctx.lineTo(this.x + this.size * scale, this.y + this.size * scale);
+            ctx.closePath();
+            ctx.fill();
+          } else {
+            ctx.fillRect(this.x - this.size * scale / 2, this.y - this.size * scale / 2, this.size * scale, this.size * scale);
+          }
+        }
+        ctx.globalAlpha = 1;
       }
     }
   
     function init() {
-      dots = [];
-      for (let i = 0; i < 100; i++) {
-        dots.push(new Dot());
+      particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
       }
     }
   
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      for (let i = 0; i < dots.length; i++) {
-        dots[i].update();
-        dots[i].draw();
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
         
-        for (let j = i + 1; j < dots.length; j++) {
-          const dx = dots[i].x - dots[j].x;
-          const dy = dots[i].y - dots[j].y;
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          if (distance < 100) {
-            ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / 100})`;
+          if (distance < connectionDistance) {
+            ctx.strokeStyle = `${particles[i].color}${Math.floor((1 - distance / connectionDistance) * 255).toString(16).padStart(2, '0')}`;
             ctx.lineWidth = 1;
             ctx.beginPath();
-            ctx.moveTo(dots[i].x, dots[i].y);
-            ctx.lineTo(dots[j].x, dots[j].y);
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
             ctx.stroke();
           }
         }
