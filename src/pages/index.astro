@@ -3,8 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import Skills from '../components/Skills.astro';
 import Contact from '../components/Contact.astro';
-import { skillCategories } from '../content/skillCategories';
 import Button from '../components/Button.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import { skillCategories } from '../content/skillCategories';
 
 // Fetch all main projects
 const mainProjects = await Astro.glob('../content/projects/main/*.mdx');
@@ -14,16 +15,16 @@ const recentMainProjects = mainProjects.sort((a, b) => new Date(b.frontmatter.da
 ---
 
 <BaseLayout title="Home">
-  <section class="mt-36">
-    <div class="flex items-center">
+  <section class="mt-12 md:mt-36">
+    <div class="flex flex-col md:flex-row items-center">
       <img 
         src="/portfolio-website/introduction-pic.svg" 
         alt="Jamie Holroyde" 
-        class="w-48 h-48 rounded-full object-cover mr-6"
+        class="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover mb-4 md:mb-0 md:mr-6"
       />
-      <div class="flex flex-col">
-        <h1 class="text-4xl font-bold text-primary-text mb-2">Jamie Holroyde</h1>
-        <p class="text-xl text-secondary-text">
+      <div class="flex flex-col text-center md:text-left">
+        <h1 class="text-3xl md:text-4xl font-bold text-primary-text mb-2">Jamie Holroyde</h1>
+        <p class="text-lg md:text-xl text-secondary-text">
           Informatics Student @ The University of Edinburgh
         </p>
       </div>
@@ -31,12 +32,9 @@ const recentMainProjects = mainProjects.sort((a, b) => new Date(b.frontmatter.da
   </section>
 
   <!-- Recent Projects Section -->
-  <section class="mt-36">
-    <div class="flex items-center mb-8">
-      <h2 class="text-title font-bold mr-4">
-        <span class="text-navigation">#</span><span class="text-white">projects</span>
-      </h2>
-      <div class="flex-grow border-t border-navigation"></div>
+  <section class="mt-12 md:mt-36">
+    <div class="flex flex-col md:flex-row items-center mb-8">
+      <SectionHeader title="projects" />
       <Button type="viewAll" href="/portfolio-website/portfolio" />
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -53,47 +51,40 @@ const recentMainProjects = mainProjects.sort((a, b) => new Date(b.frontmatter.da
   </section>
 
   <!-- Skills Section -->
-  <section class="mt-36">
-    <div class="flex items-center mb-8">
-      <h2 class="text-title font-bold mr-4">
-        <span class="text-navigation">#</span><span class="text-white">skills</span>
-      </h2>
-      <div class="flex-grow border-t border-navigation"></div>
+  <section class="mt-12 md:mt-36">
+    <div class="flex flex-col md:flex-row items-center mb-8">
+      <SectionHeader title="skills" />
     </div>
     <Skills categories={skillCategories} />
   </section>
 
   <!-- About Me Section -->
-  <section class="mt-36">
-    <div class="flex items-center mb-8">
-      <h2 class="text-title font-bold mr-4">
-        <span class="text-navigation">#</span><span class="text-white">about me</span>
-      </h2>
-      <div class="flex-grow border-t border-navigation"></div>
+  <section class="mt-12 md:mt-36">
+    <div class="flex flex-col md:flex-row items-center mb-8">
+      <SectionHeader title="about me" />
     </div>
     <p class="text-normal text-secondary-text mb-4">
       Hi, I'm Jamie! I'm an Informatics student at Edinburgh University, currently in my second year. My journey in the world of computing has been driven by a passion for technology and a desire to solve complex problems through innovative solutions.
     </p>
+    <div class="text-right">
       <Button type="page" href="/portfolio-website/about" />
+    </div>
   </section>
 
-<!-- Contact Section -->
-<section class="mt-36">
-  <div class="flex items-center mb-8">
-    <h2 class="text-title font-bold mr-4">
-      <span class="text-navigation">#</span><span class="text-white">contact</span>
-    </h2>
-    <div class="flex-grow border-t border-navigation"></div>
-  </div>
-  <div class="flex flex-col md:flex-row gap-8">
-    <div class="flex-1">
-      <p class="text-normal text-secondary-text">
-        I'm always open to new opportunities and collaborations. Whether you have a question, want to discuss a project, or just want to say hi, feel free to reach out to me. I'll do my best to get back to you as soon as possible.
-      </p>
+  <!-- Contact Section -->
+  <section class="mt-12 md:mt-36">
+    <div class="flex flex-col md:flex-row items-center mb-8">
+      <SectionHeader title="contact" />
     </div>
-    <div class="flex-shrink-0 md:w-1/3">
-      <Contact />
+    <div class="flex flex-col md:flex-row gap-8">
+      <div class="flex-1">
+        <p class="text-normal text-secondary-text">
+          I'm always open to new opportunities and collaborations. Whether you have a question, want to discuss a project, or just want to say hi, feel free to reach out to me. I'll do my best to get back to you as soon as possible.
+        </p>
+      </div>
+      <div class="flex-shrink-0 md:w-1/3">
+        <Contact />
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 </BaseLayout>
