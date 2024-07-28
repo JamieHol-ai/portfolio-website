@@ -1,0 +1,80 @@
+---
+import PageTitle from "./PageTitle.astro";
+const navItems = [
+  { href: '/portfolio-website', text: 'home' },
+  { href: '/portfolio-website/portfolio', text: 'projects' },
+  { href: '/portfolio-website/about', text: 'about me' },
+  { href: '/portfolio-website/contact', text: 'contact' },
+];
+---
+
+<nav class="sticky top-0 z-50 bg-column-bg p-4 -mx-8 -mt-8 md:hidden">
+  <div class="flex justify-between items-center">
+    <div class="text-primary-text text-m">Jamie Holroyde</div>
+    <button
+      id="menu-toggle"
+      class="text-primary-text focus:outline-none relative w-6 h-6 flex items-center justify-center"
+      aria-label="Toggle menu"
+    >
+      <div id="hamburger" class="w-6 h-6 relative z-50">
+        <span class="block absolute h-0.5 w-6 bg-current transform transition duration-300 ease-in-out"></span>
+        <span class="block absolute h-0.5 w-6 bg-current transform transition duration-300 ease-in-out"></span>
+        <span class="block absolute h-0.5 w-6 bg-current transform transition duration-300 ease-in-out"></span>
+      </div>
+    </button>
+  </div>
+
+  <div id="nav-menu" class="fixed inset-0 bg-column-bg z-40 flex flex-col  justify-center p-8 space-y-8 opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out">
+    {navItems.map((item) => (
+      <a
+        href={item.href}
+        class="text-3xl text-primary-text"
+        onclick="toggleMenu()"
+      >
+        <PageTitle title={item.text} />
+      </a>
+    ))}
+  </div>
+</nav>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  const hamburger = document.getElementById('hamburger');
+
+  function toggleMenu() {
+    navMenu.classList.toggle('opacity-0');
+    navMenu.classList.toggle('pointer-events-none');
+    hamburger.classList.toggle('open');
+    document.body.classList.toggle('overflow-hidden');
+  }
+
+  if (menuToggle && navMenu && hamburger) {
+    menuToggle.addEventListener('click', toggleMenu);
+  }
+</script>
+
+<style>
+  #hamburger span {
+    transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+  #hamburger span:nth-child(1) {
+    transform: translateY(-8px);
+  }
+  #hamburger span:nth-child(3) {
+    transform: translateY(8px);
+  }
+
+  #hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, -5px);
+  }
+  #hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+  #hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, 5px);
+  }
+</style>

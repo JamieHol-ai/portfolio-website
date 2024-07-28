@@ -1,5 +1,4 @@
 ---
-// src/components/Navbar.astro
 const navItems = [
   { href: '/portfolio-website', text: 'home' },
   { href: '/portfolio-website/portfolio', text: 'projects' },
@@ -8,28 +7,15 @@ const navItems = [
 ];
 ---
 
-<nav class="sticky top-0 z-10 bg-column-bg p-4 -mx-8 -mt-8">
-  <div class="flex justify-between items-center">
+<nav class="sticky top-0 z-10 bg-column-bg p-4 -mx-8 -mt-8 hidden md:flex">
+  <div class="flex justify-between items-center w-full">
     <div class="text-primary-text text-m">Jamie Holroyde</div>
-    
-    <!-- Hamburger menu button (visible on mobile) -->
-    <button
-      id="menu-toggle"
-      class="md:hidden text-primary-text focus:outline-none"
-      aria-label="Toggle menu"
-    >
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-      </svg>
-    </button>
-    
-    <!-- Navigation items -->
-    <ul id="nav-menu" class="hidden md:flex md:space-x-4 absolute md:relative top-full left-0 right-0 bg-column-bg md:bg-transparent p-4 md:p-0">
+    <ul class="flex space-x-4">
       {navItems.map((item, index) => (
-        <li class="mb-2 md:mb-0">
+        <li>
           <a
             href={item.href}
-            class={`text-m transition-colors duration-200 block ${
+            class={`text-m transition-colors duration-200 ${
               index === 0 ? 'text-primary-text' : 'text-secondary-text hover:text-primary-text'
             }`}
           >
@@ -40,14 +26,3 @@ const navItems = [
     </ul>
   </div>
 </nav>
-
-<script>
-  const menuToggle = document.getElementById('menu-toggle');
-  const navMenu = document.getElementById('nav-menu');
-
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('hidden');
-    });
-  }
-</script>

@@ -1,5 +1,6 @@
 ---
 import Navbar from '../components/Navbar.astro';
+import MobileNavbar from '../components/MobileNavbar.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 ---
@@ -16,13 +17,12 @@ import '../styles/global.css';
     <main class="container mx-auto px-4 py-4 w-full md:w-4/5 relative z-10 flex-grow">
       <div class="bg-column-bg p-4 md:p-8 rounded-lg shadow-lg w-full">
         <Navbar />
+        <MobileNavbar />
         <div class="mt-4 md:mt-8">
           <slot />
         </div>
-        <div class="mt-4">
-          <Footer />
-        </div>
       </div>
     </main>
+    <Footer />
   </body>
 </html>

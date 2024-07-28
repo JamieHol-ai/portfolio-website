@@ -4,15 +4,14 @@ import Skills from '../components/Skills.astro';
 import { skillCategories } from '../content/skillCategories';
 import SectionHeader from '../components/SectionHeader.astro';
 import '../styles/global.css';
+import PageTitle from '../components/PageTitle.astro';
 ---
 
 <BaseLayout title="About Me">
   <section class="mb-12">
     <div class="flex flex-col md:flex-row items-center md:items-start mb-8">
       <div class="flex-grow w-full md:w-auto mb-6 md:mb-0">
-        <h2 class="text-title font-bold mr-4 text-center md:text-left mb-4 md:mb-0">
-          <span class="text-navigation">/</span><span class="text-white">about me</span>
-        </h2>
+        <PageTitle title="about me" />
         <div class="mt-4">
           <p class="text-normal text-secondary-text mb-4 text-center md:text-left">
             Hi, I'm Jamie!
