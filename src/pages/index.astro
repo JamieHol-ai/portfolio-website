@@ -4,6 +4,7 @@ import ProjectCard from '../components/ProjectCard.astro';
 import Skills from '../components/Skills.astro';
 import Contact from '../components/Contact.astro';
 import { skillCategories } from '../content/skillCategories';
+import Button from '../components/Button.astro';
 
 // Fetch all main projects
 const mainProjects = await Astro.glob('../content/projects/main/*.mdx');
@@ -29,24 +30,6 @@ const recentMainProjects = mainProjects.sort((a, b) => new Date(b.frontmatter.da
     </div>
   </section>
 
-  <!-- About Me Section -->
-  <section class="mt-36">
-    <div class="flex items-center mb-8">
-      <h2 class="text-title font-bold mr-4">
-        <span class="text-navigation">#</span><span class="text-white">about me</span>
-      </h2>
-      <div class="flex-grow border-t border-navigation"></div>
-    </div>
-    <p class="text-normal text-secondary-text mb-4">
-      Hi, I'm Jamie! I'm an Informatics student at Edinburgh University, currently in my second year. My journey in the world of computing has been driven by a passion for technology and a desire to solve complex problems through innovative solutions.
-    </p>
-    <div class="text-right">
-      <a href="/portfolio-website/about" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-        Read More
-      </a>
-    </div>
-  </section>
-
   <!-- Recent Projects Section -->
   <section class="mt-36">
     <div class="flex items-center mb-8">
@@ -54,9 +37,7 @@ const recentMainProjects = mainProjects.sort((a, b) => new Date(b.frontmatter.da
         <span class="text-navigation">#</span><span class="text-white">projects</span>
       </h2>
       <div class="flex-grow border-t border-navigation"></div>
-      <a href="/portfolio-website/portfolio" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-        View all
-      </a>
+      <Button type="viewAll" href="/portfolio-website/portfolio" />
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {recentMainProjects.map((project) => (
@@ -80,6 +61,20 @@ const recentMainProjects = mainProjects.sort((a, b) => new Date(b.frontmatter.da
       <div class="flex-grow border-t border-navigation"></div>
     </div>
     <Skills categories={skillCategories} />
+  </section>
+
+  <!-- About Me Section -->
+  <section class="mt-36">
+    <div class="flex items-center mb-8">
+      <h2 class="text-title font-bold mr-4">
+        <span class="text-navigation">#</span><span class="text-white">about me</span>
+      </h2>
+      <div class="flex-grow border-t border-navigation"></div>
+    </div>
+    <p class="text-normal text-secondary-text mb-4">
+      Hi, I'm Jamie! I'm an Informatics student at Edinburgh University, currently in my second year. My journey in the world of computing has been driven by a passion for technology and a desire to solve complex problems through innovative solutions.
+    </p>
+      <Button type="page" href="/portfolio-website/about" />
   </section>
 
 <!-- Contact Section -->
