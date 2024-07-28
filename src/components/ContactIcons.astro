@@ -1,0 +1,38 @@
+---
+import { contactInfo } from '../content/contactInfo';
+
+const { email, discord, linkedin, github } = contactInfo;
+---
+
+<div class="flex flex-col items-center sm:items-end">
+    <div class="flex items-center space-x-4">
+      <a href={`mailto:${email}`} class="text-white hover:text-blue-500">
+        <img 
+          src="/portfolio-website/icons/email.svg" 
+          alt="Email" 
+          class="w-6 h-6"
+        />
+      </a>
+      <a href={discord} class="text-white hover:text-blue-500">
+        <img 
+          src="/portfolio-website/icons/discord.svg" 
+          alt="Discord" 
+          class="w-6 h-6"
+        />
+      </a>
+      <a href={linkedin} class="text-white hover:text-blue-500">
+        <img 
+          src="/portfolio-website/icons/linkedin.svg" 
+          alt="Linkedin" 
+          class="w-6 h-6"
+        />
+      </a>
+      <a href={github} class="text-white hover:text-blue-500">
+        <img 
+          src="/portfolio-website/icons/github.svg" 
+          alt="Github" 
+          class="w-6 h-6"
+        />
+      </a>
+    </div>
+  </div>

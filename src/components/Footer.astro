@@ -1,45 +1,14 @@
 ---
+import ContactIcons from "./ContactIcons.astro"
 import { contactInfo } from '../content/contactInfo';
 
-const { name, email, discord, linkedin, github } = contactInfo;
+const { name } = contactInfo;
 ---
-
 <footer class="bg-column-bg text-primary-text py-4 mt-auto border-t border-white">
   <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center">
     <div class="text-sm mb-4 sm:mb-0 hidden sm:block">
       {name}
     </div>
-    <div class="flex flex-col items-center sm:items-end">
-      <div class="flex items-center space-x-4">
-        <a href={`mailto:${email}`} class="text-white hover:text-blue-500">
-          <img 
-            src="/portfolio-website/icons/email.svg" 
-            alt="Email" 
-            class="w-6 h-6"
-          />
-        </a>
-        <a href={discord} class="text-white hover:text-blue-500">
-          <img 
-            src="/portfolio-website/icons/discord.svg" 
-            alt="Discord" 
-            class="w-6 h-6"
-          />
-        </a>
-        <a href={linkedin} class="text-white hover:text-blue-500">
-          <img 
-            src="/portfolio-website/icons/linkedin.svg" 
-            alt="Linkedin" 
-            class="w-6 h-6"
-          />
-        </a>
-        <a href={github} class="text-white hover:text-blue-500">
-          <img 
-            src="/portfolio-website/icons/github.svg" 
-            alt="Github" 
-            class="w-6 h-6"
-          />
-        </a>
-      </div>
-    </div>
+    <ContactIcons />
   </div>
 </footer>

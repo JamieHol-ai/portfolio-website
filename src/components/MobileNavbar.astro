@@ -1,5 +1,6 @@
 ---
 import PageTitle from "./PageTitle.astro";
+import ContactIcons from "./ContactIcons.astro";
 const navItems = [
   { href: '/portfolio-website', text: 'home' },
   { href: '/portfolio-website/portfolio', text: 'projects' },
@@ -34,6 +35,7 @@ const navItems = [
         <PageTitle title={item.text} />
       </a>
     ))}
+    <ContactIcons />
   </div>
 </nav>
 
