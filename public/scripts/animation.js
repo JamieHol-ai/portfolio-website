@@ -21,50 +21,33 @@ document.addEventListener('DOMContentLoaded', () => {
         this.speedX = (Math.random() * 2 - 1) * baseSpeed;
         this.speedY = (Math.random() * 2 - 1) * baseSpeed;
         this.color = colors[Math.floor(Math.random() * colors.length)];
-        this.shape = Math.random() < 0.33 ? 'circle' : Math.random() < 0.66 ? 'triangle' : 'square';
-        this.z = Math.random() * 3; // For depth illusion
+        this.zOffset = Math.random() * Math.PI * 2; // Random starting point for z oscillation
+        this.zSpeed = 0.02 + Math.random() * 0.02; // Random speed for z oscillation
         this.isIcon = Math.random() < 0.1; // 10% chance to be an icon
         if (this.isIcon) {
           this.icon = ['</', '{}', '[]', '()'][Math.floor(Math.random() * 4)];
         }
       }
-  
+    
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
-  
+    
         if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
         if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-  
-        // Update z for depth illusion
-        this.z += 0.01;
-        if (this.z > 3) this.z = 0;
+    
+        // Update z for depth illusion using sine function
+        this.zOffset += this.zSpeed;
+        this.z = (Math.sin(this.zOffset) + 1) / 2 * 3; // Oscillates between 0 and 3
       }
   
       draw() {
         const scale = (this.z + 1) / 4; // 0.25 to 1
         ctx.globalAlpha = scale;
         ctx.fillStyle = this.color;
-  
-        if (this.isIcon) {
-          ctx.font = `${this.size * 2 * scale}px Arial`;
-          ctx.fillText(this.icon, this.x, this.y);
-        } else {
-          if (this.shape === 'circle') {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size * scale, 0, Math.PI * 2);
-            ctx.fill();
-          } else if (this.shape === 'triangle') {
-            ctx.beginPath();
-            ctx.moveTo(this.x, this.y - this.size * scale);
-            ctx.lineTo(this.x - this.size * scale, this.y + this.size * scale);
-            ctx.lineTo(this.x + this.size * scale, this.y + this.size * scale);
-            ctx.closePath();
-            ctx.fill();
-          } else {
-            ctx.fillRect(this.x - this.size * scale / 2, this.y - this.size * scale / 2, this.size * scale, this.size * scale);
-          }
-        }
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size * scale, 0, Math.PI * 2);
+        ctx.fill();
         ctx.globalAlpha = 1;
       }
     }

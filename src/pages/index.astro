@@ -31,6 +31,17 @@ const recentMainProjects = mainProjects.sort((a, b) => new Date(b.frontmatter.da
     </div>
   </section>
 
+  <!-- About Me Section -->
+  <section class="mt-12 md:mt-36">
+    <div class="flex flex-col md:flex-row items-center mb-8">
+      <SectionHeader title="about me" />
+    </div>
+    <p class="text-normal text-secondary-text mb-4">
+      Hi, I'm Jamie! I'm an Informatics student at Edinburgh University, currently in my second year. My journey in the world of computing has been driven by a passion for technology and a desire to solve complex problems through innovative solutions.
+    </p>
+    <Button type="page" href="/portfolio-website/about" />
+  </section>
+
   <!-- Recent Projects Section -->
   <section class="mt-12 md:mt-36">
     <div class="flex flex-col md:flex-row items-center mb-8">
@@ -56,19 +67,6 @@ const recentMainProjects = mainProjects.sort((a, b) => new Date(b.frontmatter.da
       <SectionHeader title="skills" />
     </div>
     <Skills categories={skillCategories} />
-  </section>
-
-  <!-- About Me Section -->
-  <section class="mt-12 md:mt-36">
-    <div class="flex flex-col md:flex-row items-center mb-8">
-      <SectionHeader title="about me" />
-    </div>
-    <p class="text-normal text-secondary-text mb-4">
-      Hi, I'm Jamie! I'm an Informatics student at Edinburgh University, currently in my second year. My journey in the world of computing has been driven by a passion for technology and a desire to solve complex problems through innovative solutions.
-    </p>
-    <div class="text-right">
-      <Button type="page" href="/portfolio-website/about" />
-    </div>
   </section>
 
   <!-- Contact Section -->
