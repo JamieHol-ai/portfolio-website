@@ -4,5 +4,7 @@ export const contactInfo = {
   email: "jamieholroyde@gmail.com",
   discord: "your-discord-link",
   linkedin: "https://www.linkedin.com/in/jamieholroyde/",
-  github: "https://github.com/JamieHol-ai"
+  linkedinUsername: "jamieholroyde",
+  github: "https://github.com/JamieHol-ai",
+  githubUsername: "JamieHol-ai"
 };
