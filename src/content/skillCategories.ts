@@ -12,8 +12,8 @@ export const skillCategories = [
       skills: ['Git', 'VS Code'],
     },
     {
-      title: 'Specialized Technologies',
-      skills: ['Unreal Engine 4', 'Robot Operating System (ROS)', 'SLAM (Simultaneous Localization and Mapping)'],
+      title: 'Specialised Technologies',
+      skills: ['Unreal Engine 4', 'Robot Operating System (ROS)', 'SLAM (Simultaneous Localisation and Mapping)'],
     },
   ];
   
