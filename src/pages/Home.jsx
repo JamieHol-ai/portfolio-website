@@ -1,8 +1,8 @@
 import React from 'react';
-import Button from './Button';
-import SectionHeader from './SectionHeader';
-import ProjectCard from './ProjectCard';
-import Skills from './Skills';
+import Button from '../components/Button';
+import SectionHeader from '../components/SectionHeader';
+import ProjectCard from '../components/ProjectCard';
+import Skills from '../components/Skills';
 import Contact from './Contact';
 import { skillCategories } from '../content/skillCategories';
 

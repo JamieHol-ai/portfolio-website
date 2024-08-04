@@ -1,7 +1,7 @@
 import React from 'react';
-import Skills from './Skills';
-import SectionHeader from './SectionHeader';
-import PageTitle from './PageTitle';
+import Skills from '../components/Skills';
+import SectionHeader from '../components/SectionHeader';
+import PageTitle from '../components/PageTitle';
 import { skillCategories } from '../content/skillCategories'; // Adjust the import path as necessary
 
 const About = () => (
