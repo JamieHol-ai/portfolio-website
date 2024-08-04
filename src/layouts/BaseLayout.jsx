@@ -1,4 +1,6 @@
 ---
+import React from 'react';
+import Navbar from '../components/Navbar.jsx';
 import MobileNavbar from '../components/MobileNavbar.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
@@ -15,6 +17,8 @@ import '../styles/global.css';
     <canvas id="animation-background" class="fixed inset-0 z-0 hidden md:block"></canvas> <!-- Hide on mobile -->
     <main class="container mx-auto px-4 py-4 w-full md:w-4/5 relative z-10 flex-grow">
       <div class="bg-column-bg p-4 md:p-8 rounded-lg shadow-lg w-full">
+        <Navbar client:load />
+        <MobileNavbar />
         <div class="mt-4 md:mt-8">
           <slot />
         </div>
