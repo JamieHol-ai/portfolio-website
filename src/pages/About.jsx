@@ -2,7 +2,7 @@ import React from 'react';
 import Skills from '../components/Skills';
 import SectionHeader from '../components/SectionHeader';
 import PageTitle from '../components/PageTitle';
-import { skillCategories } from '../content/skillCategories'; // Adjust the import path as necessary
+
 
 const About = () => (
   <div>
@@ -33,7 +33,7 @@ const About = () => (
       <div className="flex flex-col md:flex-row items-center mb-8">
         <SectionHeader title="skills" />
       </div>
-      <Skills categories={skillCategories} />
+      <Skills/>
     </section>
   </div>
 );

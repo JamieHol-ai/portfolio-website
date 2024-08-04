@@ -1,5 +1,6 @@
 import React from 'react';
 import PageTitle from '../components/PageTitle';
+import MessageMe from '../components/Contact';
 
 const Contact = () => (
   <section className="mb-12">
@@ -12,6 +13,7 @@ const Contact = () => (
           Feel free to reach out to me. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
         </p>
       </div>
+      <MessageMe />
     </div>
   </section>
 );
