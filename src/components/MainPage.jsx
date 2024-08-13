@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import BaseLayout from '../layouts/BaseLayout';
-import Home from './Home';
-import About from './About';
-import Contact from './Contact';
-import Portfolio from './Portfolio';
+import Home from './HomePage';
+import About from './AboutPage';
+import Contact from './ContactPage';
+import Portfolio from './PortfolioPage';
 
 const Main = () => {
   const [page, setPage] = useState('home');

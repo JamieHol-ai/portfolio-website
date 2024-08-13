@@ -1,7 +1,7 @@
 import React from 'react';
-import PageTitle from '../components/PageTitle';
-import MainProjects from '../components/MainProjects';
-import SmallProjects from '../components/SmallProjects';
+import PageTitle from './PageTitle';
+import MainProjects from './MainProjects';
+import SmallProjects from './SmallProjects';
 
 const Portfolio = () => (
   <div>

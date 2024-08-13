@@ -1,5 +1,16 @@
 ---
-import Main from './Main.jsx';
+import Main from '../components/MainPage';
+import '../styles/global.css'; // Ensure this path is correct
 ---
 
-<Main client:load />
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio Website</title>
+    <link rel="stylesheet" href="../styles/global.css">
+  </head>
+  <body class="bg-main-bg">
+    <Main client:load />
+  </body>
+</html>

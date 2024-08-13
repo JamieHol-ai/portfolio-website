@@ -1,6 +1,6 @@
 import React from 'react';
-import PageTitle from '../components/PageTitle';
-import MessageMe from '../components/Contact';
+import PageTitle from './PageTitle';
+import MessageMe from './Contact';
 
 const Contact = () => (
   <section className="mb-12">

@@ -18,7 +18,7 @@ const BaseLayout = ({ title, children, setPage }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{title}</title>
       </head>
-      <body class="bg-main-bg min-h-screen flex flex-col items-center justify-center relative">
+      <body className="bg-main-bg min-h-screen flex flex-col items-center justify-center relative">
         <BackgroundAnimation />
         <main className="container mx-auto px-4 py-4  relative z-10 flex-grow">
           <div className="bg-column-bg p-4 md:p-8 rounded-lg shadow-lg w-full">

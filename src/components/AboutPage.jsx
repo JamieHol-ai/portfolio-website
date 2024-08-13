@@ -1,7 +1,7 @@
 import React from 'react';
-import Skills from '../components/Skills';
-import SectionHeader from '../components/SectionHeader';
-import PageTitle from '../components/PageTitle';
+import Skills from './Skills';
+import SectionHeader from './SectionHeader';
+import PageTitle from './PageTitle';
 
 
 const About = () => (

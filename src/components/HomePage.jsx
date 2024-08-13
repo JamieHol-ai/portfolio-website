@@ -1,9 +1,9 @@
 import React from 'react';
-import Button from '../components/Button';
-import SectionHeader from '../components/SectionHeader';
-import Projects from '../components/MainProjects';
-import Skills from '../components/Skills';
-import Contact from '../components/Contact';
+import Button from './Button';
+import SectionHeader from './SectionHeader';
+import Projects from './MainProjects';
+import Skills from './Skills';
+import Contact from './Contact';
 
 const Home = ({ setPage }) => (
   <div>

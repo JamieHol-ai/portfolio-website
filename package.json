@@ -2,11 +2,13 @@
   "name": "my-portfolio-website",
   "type": "module",
   "version": "0.0.1",
+  "homepage": "https://jamiehol-ai.github.io/portfolio-website/",
   "scripts": {
     "dev": "astro dev --host",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "astro": "astro"
   },
@@ -22,6 +24,9 @@
   "devDependencies": {
     "@astrojs/tailwind": "^5.1.0",
     "gh-pages": "^6.1.1",
-    "tailwindcss": "^3.4.7"
+    "tailwindcss": "^3.4.7",
+    "autoprefixer": "^10.3.7",
+    "postcss": "^8.3.11",
+    "postcss-cli": "^8.3.1"
   }
 }
