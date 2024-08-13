@@ -1,1 +1,33 @@
-To come
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ExperienceCard from '../components/ExperienceCard.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import PageTitle from '../components/PageTitle.astro';
+
+// Fetch main projects
+const mainProjects = await Astro.glob('../content/experience/*.mdx');
+---
+
+<BaseLayout title="Portfolio">
+  <PageTitle title="experience" />
+  <p class="text-normal text-secondary-text mb-8">
+    Here are some of the professional experiences I've had, including internships and projects that have helped me grow as a software engineer.
+  </p>
+
+  <section class="mb-12">
+    <div class="flex flex-col md:flex-row items-center mb-8">
+      <SectionHeader title="main projects" />
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {mainProjects.map((project) => (
+        <ExperienceCard
+          title={project.frontmatter.title}
+          description={project.frontmatter.description}
+          image={project.frontmatter.image}
+          url={project.frontmatter.url}
+          software={Array.isArray(project.frontmatter.software) ? project.frontmatter.software : []}
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

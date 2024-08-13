@@ -7,10 +7,8 @@ import Button from '../components/Button.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import { skillCategories } from '../content/skillCategories';
 
-// Fetch all main projects
 const mainProjects = await Astro.glob('../content/projects/main/*.mdx');
 
-// Sort projects by date or any other criteria and take the three most recent
 const recentMainProjects = mainProjects.sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date)).slice(0, 3);
 ---
 

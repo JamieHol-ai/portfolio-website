@@ -5,7 +5,7 @@ export const skillCategories = [
     },
     {
       title: 'Web Development',
-      skills: ['HTML', 'CSS', 'Node.js', 'Astro', 'Tailwind'],
+      skills: ['HTML', 'CSS', 'Astro', 'Tailwind'],
     },
     {
       title: 'Software Development Tools',
