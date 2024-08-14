@@ -1,13 +1,127 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ExperienceTimeline from '../components/ExperienceTimeline.astro';
+import ExperienceCard from '../components/ExperienceCard.astro';
 import PageTitle from '../components/PageTitle.astro';
+// Function to extract the end date from the duration string
+function extractEndDate(duration) {
+  const endDateStr = duration.split(' - ')[1]; // Get the end date string
+  return new Date(endDateStr.split('/').reverse().join('-')); // Convert to Date object
+}
+
+const experiences = await Astro.glob('../content/experience/*.mdx');
+const experiencesOrdered = experiences.sort((a, b) => extractEndDate(b.frontmatter.duration) - extractEndDate(a.frontmatter.duration));
 
 
 ---
-
 <BaseLayout title="Experience">
-  <PageTitle title="Experience" />
-  <ExperienceTimeline />
+    <PageTitle title="Experience" />
+    <div class="timeline relative max-w-7xl m-0">
+        {experiencesOrdered.map((experience, index) => (
+          <div class={`container relative w-1/2 py-2.5 px-10 ${index % 2 === 0 ? 'left-0' : 'right'}`}>
+            <div class="content py-5 px-8 relative rounded-md">
+              <ExperienceCard
+                index={index}
+                title={experience.frontmatter.title}
+                description={experience.frontmatter.description}
+                duration={experience.frontmatter.duration}
+                />
+            </div>
+          </div>
+        ))}
+      </div>
+  </BaseLayout>
   
-</BaseLayout>
+  <style>    
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: #729CEE;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+    }
+    
+    /* The circles on the timeline */
+    .container::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      right: 0px;
+      background-color: white;
+      border: 2px solid #FF9F55;
+      top: 15px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+    
+    /* Place the container to the left */
+    .left {
+      left: 0;
+    }
+    
+    /* Place the container to the right */
+    .right {
+      left: 50%;
+    }
+    
+    .left::before {
+      content: " ";
+      height: 0;
+      position: absolute;
+      top: 22px;
+      width: 0;
+      z-index: 1;
+      right: 30px;
+      border: medium solid white;
+      border-width: 10px 0 10px 10px;
+      border-color: transparent transparent transparent white;
+    }
+    
+    .right::before {
+      content: " ";
+      height: 0;
+      position: absolute;
+      top: 22px;
+      width: 0;
+      z-index: 1;
+      left: 30px;
+      border: medium solid white;
+      border-width: 10px 10px 10px 0;
+      border-color: transparent white transparent transparent;
+    }
+    
+    .right::after {
+      left: -16px;
+    }
+    
+    /* Media queries - Responsive timeline on screens less than 600px wide */
+    @media screen and (max-width: 600px) {
+      .timeline::after {
+        left: 31px;
+      }
+      
+      .container {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+      
+      .container::before {
+        left: 60px;
+        border: medium solid white;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent white transparent transparent;
+      }
+    
+      .left::after, .right::after {
+        left: 15px;
+      }
+      
+      .right {
+        left: 0%;
+      }
+    }
+    </style>

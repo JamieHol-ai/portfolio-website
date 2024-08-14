@@ -1,0 +1,16 @@
+---
+export interface Props {
+  index: number;
+  title: string;
+  description: string;
+  duration: string;
+}
+
+const { index, title, description, duration } = Astro.props;
+---
+
+<div class=`text-secondary-text p-4 pt-1 ${index % 2 === 0 ? 'text-left' : 'text-right'}`>
+  <p class="text-primary-text">{duration}</p>
+  <h3 class="mb-2 text-primary-text text-lg font-semibold">{title}</h3>
+  <p class="pt-1 pb-4">{description}</p>
+</div>
