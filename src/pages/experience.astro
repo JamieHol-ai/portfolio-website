@@ -1,11 +1,77 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ExperienceTimeline from '../components/ExperienceTimeline.astro';
+import ExperienceCard from '../components/ExperienceCard.astro';
 import PageTitle from '../components/PageTitle.astro';
+// Function to extract the end date from the duration string
+function extractEndDate(duration) {
+  const endDateStr = duration.split(' - ')[1]; // Get the end date string
+  return new Date(endDateStr.split('/').reverse().join('-')); // Convert to Date object
+}
 
+const experiences = await Astro.glob('../content/experience/*.mdx');
+const experiencesOrdered = experiences.sort((a, b) => extractEndDate(b.frontmatter.duration) - extractEndDate(a.frontmatter.duration));
+for (const experience of experiencesOrdered) {
+  console.log(experience.Content);
+}
 
 ---
 <BaseLayout title="Experience">
     <PageTitle title="Experience" />
-    <ExperienceTimeline />
+    <div class="timeline w-fit min-w-[900px] mx-auto px-5 py-8 m-0 relative">
+      <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-navigation transform -translate-x-1/2"></div>
+      {experiencesOrdered.map((experience, index) => (
+        <div
+          class={`relative w-fit min-w-80 transition-colors cursor-pointer rounded-3xl border-2 border-primary-text ${
+            index % 2 === 0 ? 'text-left arrow-left' : ' ml-auto text-right arrow-right'
+          } hover:bg-[#707c8f]`}
+        >
+          <ExperienceCard
+            index={index}
+            image={experience.frontmatter.image}
+            duration={experience.frontmatter.duration}
+            title={experience.frontmatter.title}
+            company={experience.frontmatter.company}
+            description={experience.frontmatter.description}
+            location={experience.frontmatter.location}
+          />
+        </div>
+      ))}
+    </div>
   </BaseLayout>
+  
+  <style>
+  
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 0.5rem;
+      background-color: var(--primary-text-color);
+      transform: translateX(-50%);
+    }
+  
+    .arrow-left::before,
+    .arrow-right::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      transform: translateY(-50%);
+    }
+  
+    .arrow-right::before {
+      left: -10px;
+      border-width: 10px 10px 10px 0;
+      border-color: transparent #fff transparent transparent;
+    }
+  
+    .arrow-left::before {
+      right: -10px;
+      border-width: 10px 0 10px 10px;
+      border-color: transparent transparent transparent #fff;
+    }
+  </style>
