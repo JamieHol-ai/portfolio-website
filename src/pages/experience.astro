@@ -10,24 +10,29 @@ function extractEndDate(duration) {
 
 const experiences = await Astro.glob('../content/experience/*.mdx');
 const experiencesOrdered = experiences.sort((a, b) => extractEndDate(b.frontmatter.duration) - extractEndDate(a.frontmatter.duration));
-
+for (const experience of experiencesOrdered) {
+  console.log(experience.Content);
+}
 
 ---
 <BaseLayout title="Experience">
     <PageTitle title="Experience" />
-    <div class="timeline w-full px-5 py-8 m-0 relative">
-      <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-primary-text transform -translate-x-1/2"></div>
+    <div class="timeline w-fit min-w-[900px] mx-auto px-5 py-8 m-0 relative">
+      <div class="absolute left-1/2 top-0 bottom-0 w-0.5 bg-navigation transform -translate-x-1/2"></div>
       {experiencesOrdered.map((experience, index) => (
         <div
-          class={`relative w-[46%] transition-colors cursor-pointer rounded-3xl border-2 border-primary-text ${
-            index % 2 === 0 ? 'mr-auto text-left arrow-left' : 'ml-auto text-right arrow-right'
-          }`}
+          class={`relative w-fit min-w-80 transition-colors cursor-pointer rounded-3xl border-2 border-primary-text ${
+            index % 2 === 0 ? 'text-left arrow-left' : ' ml-auto text-right arrow-right'
+          } hover:bg-[#707c8f]`}
         >
           <ExperienceCard
             index={index}
+            image={experience.frontmatter.image}
             duration={experience.frontmatter.duration}
             title={experience.frontmatter.title}
+            company={experience.frontmatter.company}
             description={experience.frontmatter.description}
+            location={experience.frontmatter.location}
           />
         </div>
       ))}

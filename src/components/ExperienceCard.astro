@@ -1,16 +1,27 @@
 ---
 export interface Props {
   index: number;
+  image: string;
   title: string;
+  company: string;
+  location: string;
   description: string;
   duration: string;
 }
 
-const { index, title, description, duration } = Astro.props;
+const { index, image, title, company, location, description, duration } = Astro.props;
 ---
 
-<div class=`text-secondary-text p-4 pt-1 ${index % 2 === 0 ? 'text-right' : 'text-left'}`>
-  <p class="text-primary-text">{duration}</p>
-  <h3 class="mb-2 text-primary-text text-lg font-semibold">{title}</h3>
+<div class=`text-secondary-text ${index % 2 === 0 ? 'text-right' : 'text-left'}`>
+  <div class="relative">
+    <img src={image} alt={title} class="w-full h-48 object-cover rounded-t-3xl" />
+    <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-2">
+      <h3 class="text-xl font-bold text-white">{title}</h3>
+    </div>
+  </div>
+  <div class="p-2 border-t-2">
+  <p class="text-primary-text">{location} • {duration}</p>
+  <h3 class="text-primary-text text-lg">{company}</h3>
   <p class="pt-1 pb-4">{description}</p>
+  </div>
 </div>
